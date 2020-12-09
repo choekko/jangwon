@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- bulma 링크 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- fontawesome 링크-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    <!-- google font 링크-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <!-- jQuery 링크 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!-- 스타일시트 링크 -->
+    <link href="{{ url_for('static', filename='layout.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='mypage.css') }}" rel="stylesheet">
+
+    <!-- 스크립트 링크 -->
+    <script src="{{ url_for('static', filename='layout.js') }}"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='mypage.js') }}"></script>
+
+    <title>장원급제</title>
+
+    {% block pageload %}{% endblock %}
+    <style>
+        .uplayout {
+            width : 98%;
+            height : 70px;
+            border : solid 2px lightslategrey;
+            border-radius : 10px;
+            padding : 0px 0 0 43%;
+            margin : 1%;
+            z-index: 1;
+            background-image:url(../static/back.png);
+        }
+        .belowlayout {
+            width : 98%;
+            height : 120px;
+            border-top: solid 2px lightslategrey;
+            border-left : solid 2px lightslategrey;
+            border-right: solid 2px lightslategrey;
+            background-color : #2E3D59;
+            border-top-left-radius : 10px;
+            border-top-right-radius: 10px;
+            text-align: center;
+            padding : 15px 5px;
+            margin : 1%;
+        }
+
+        .dropdown {
+            position : relative;
+            display : inline-block;
+        }
+
+        .dropdown-content  {
+            display: none;
+            float : left;
+            background-color: #F5D89B;
+            padding: 3px 8px 0 8px;
+            margin : 0 3px;
+            height : 30px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            transition: 0.4s;
+        }
+
+        p { color : black;}
+        h1 { font-size: 30px; font-family: 'Yeon Sung', sursive;}
+        h2 { font-size: 50px; font-family: 'Yeon Sung', sursive;}
+
+        .dropdown:hover .dropdown-content {
+            display : block;
+        }
+        .dropdown:hover #logout {
+            display : none;
+        }
+
+        #PopUp{
+            position : fixed;
+            width : 30em;
+            height : 17em;
+            display : none;
+            top: 30%; left: 50%;
+            margin-left: -15em;
+            margin-top: -5%;
+            padding: 4em;
+        }
+
+        #pozol{
+            position : relative;
+            width : 16em;
+            height : 16em;
+            display : none;
+            top: -14em; left : 75%;
+            background-image: url("../static/pozol.png");
+            background-size: cover;
+        }
+
+        #chat{
+            position : relative;
+            width : 17em;
+            height : 2.2em;
+            display : none;
+            top: -16em; left : 0%;
+            background-image: url("../static/chat.png");
+            background-size: cover;
+        }
+
+        #flag {
+            width: 110px;
+            height: 56px;
+            box-sizing: content-box;
+            padding-top: 15px;
+            position: relative;
+            background: pink;
+            color: white;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        #flag:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-bottom: 13px solid #eee;
+            border-left: 55px solid transparent;
+            border-right: 55px solid transparent;
+        }
+
+    </style>
+
+    <script>
+
+
+        function OpenPop(){
+            $("#PopUp").show();
+            $("#pozol").show();
+        }
+
+        function Beloggedin(){
+            $("#logbtn").hide();
+            $.ajax({
+                type: "GET",
+                url: "/idcheck",
+                data: {},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        let loginId = response["id"]
+                        let loginhtml = `
+            <i onclick="Logout()" id="logout" class="fas fa-door-open fa-2x pointer" style="position:fixed; right:2.2%; bottom : 9%; z-index:3"></i>
+                    <div class="dropdown" style="float : right; margin : 8px 8px 0 0">
+            <i class="fas fa-scroll fa-2x pointer" style="position:fixed; right:2.2%; bottom : 14%; z-index:3" onclick="location.href='myPage'"></i>
+            <div class="dropdown-content" style="position:fixed; right:90px; bottom : 14%; z-index:3">
+                <p>${loginId}의 시권(試券)</p>
+            </div>
+        </div>`
+                        $("#iflogin").append(loginhtml);
+
+                    }
+                }
+            })
+        }
+
+        function Notlogin(){
+            $("#logbtn").show();
+        }
+    </script>
+</head>
+<body>
+<div style="width : 25em; height:8em; position: fixed; margin-left: -12.5em; left:50%; top: 14px; z-index: 1; background-image: url(../static/scscroll.png); background-size: cover; padding: 2em 0 0 8em">
+    <div id="jangwonhome">
+        <div style="display : inline; float : left">
+            <h2 style="" class="pointer" onclick="location.href='/'">장원급제</h2>
+        </div>
+        <div style="display : inline; width : 3.5em; height : 5em; transform:translate(-7px, -15px); background-image:url(../static/write.png); float : left; background-size : cover; "></div>
+    </div>
+    <div id="jangwon" style="transform: translate(-15%, 0)">
+        <div style="float : left">
+            <h2 style="" class="pointer" onclick="location.href='/'">장원 : <span id="rank-1"></span></h2>
+        </div>
+        <div style="display : inline; width : 3.5em; height : 5em; transform:translate(-7px, -15px); background-image:url(../static/write.png); float : left; background-size : cover; "></div>
+    </div>
+</div>
+<div id="iflogin">
+</div>
+<div id="logbtn" class="dropdown" style="display : none; position:fixed; right:2%; bottom : 8%; z-index:3">
+    <i class="fas fa-user-circle fa-3x" onclick="OpenPop()"></i>
+    <div class="dropdown-content" style="z-index: 3">
+        <p>과거보러 오셨소?</p>
+    </div>
+</div>
+
+
+{% block content %}{% endblock %}
+<div id="PopUp" style="background-image: url(../static/duru.png); background-size: cover; z-index: 3">
+    <div style="width: 28em; height: 4em">
+        <div style="width : 4em; height: 3em; display: block; float: left; padding: 0.3em 0 0.3em 1em; font-family: 'Yeon Sung', sursive; font-size : 1.3em">문벌</div>
+        <div style="width : 18em; height: 3em; display: block; float: left">
+            <input style="width : 100%; height: 100%" placeholder="어디 집안이오" id="idValue">
+        </div>
+    </div>
+    <div style="width: 28em; height: 5em">
+        <div style="width : 4em; height: 3em; display: block; float: left; padding: 0.3em 0 0.3em 1em; font-family: 'Yeon Sung', sursive; font-size : 1.3em">호패</div>
+        <div style="width : 18em; height: 3em; display: block; float: left">
+            <input style="width : 100%; height: 100%" placeholder="문호를 증명하시오" type="password" id="pwValue">
+        </div>
+    </div>
+    <div style="width: 23em; padding-left: 1.5em; height: 4em;">
+        <div id="goLogin" style="width : 7em; display: block; float: left; text-align: center;" onclick="Login()">입궐(入闕)</div>
+        <div id="goSet" style="width : 7em; display: block; float: left; text-align: center" onclick="CreateAccount()"> 서경(署經) </div>
+    </div>
+    <div id="pozol" style="z-index: 1;"></div>
+    <div id="justSee" style="position: relative; top: -20em; left : 70%;  width : 7em; display: block; z-index: 3; float: left; text-align: center" onclick="Popdown()">
+        방관(傍觀) </div>
+    <div id="chat" style="display: none">
+        <h1 id="wannalogin" style="display: none; position:relative; left : -2em; top:-2px">들어오시겠소?</h1>
+        <h1 id="wannaSet" style="display: none; position:relative; left : -1.5em; top:-2px;">처음이시오?</h1>
+        <h1 id="wannaSee" style="display: none; position:relative; left : -2em; top:-2px;">돌아가시겠소?</h1>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="belowlayout" style="background-image:url(../static/back.png)">
+    <p style="font-size: 1em; color: black"> Copyright ⓒ SW JUNGLE 1rd-0week-8team All rights reserved </p>
+</div>
+</body>
+</html>

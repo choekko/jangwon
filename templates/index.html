@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+
+{% block pageload %}
+{% if session['id'] %}
+<script>
+    $(document).ready(function(){
+        readSam();
+        showRank();
+        setKeyword();
+        Beloggedin();
+        $('#jangwon').hide();
+        $('#jangwonhome').hover(function() {
+            $('#jangwonhome').hide();
+            $('#jangwon').show();
+        }, function() {
+            $('#jangwon').hide();
+            $('#jangwonhome').show();
+        })
+
+    });
+</script>
+{% else %}
+<script>
+    $(document).ready(function(){
+        readSam();
+        showRank();
+        setKeyword();
+        Notlogin();
+        $('#jangwon').hide();
+        $('#jangwonhome').hover(function() {
+            $('#jangwonhome').hide();
+            $('#jangwon').show();
+        }, function() {
+            $('#jangwon').hide();
+            $('#jangwonhome').show();
+        })
+
+        $('#goLogin').hover(function() {
+            $('#chat').show();
+            $('#wannalogin').show();
+        }, function() {
+            $('#chat').hide();
+            $('#wannalogin').hide();
+        })
+
+        $('#goSet').hover(function() {
+            $('#chat').show();
+            $('#wannaSet').show();
+        }, function() {
+            $('#chat').hide();
+            $('#wannaSet').hide();
+        })
+
+
+        $('#justSee').hover(function() {
+            $('#chat').show();
+            $('#wannaSee').show();
+        }, function() {
+            $('#chat').hide();
+            $('#wannaSee').hide();
+        })
+    });
+</script>
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div style="height:7em; left:50%; top: 120px; z-index: 1; padding: 2em 0em;">
+    <h2 style="position: relative; left:50%; top:120px; margin-left:-5em; font-size: 45px; float:left">금일 시제(試題)는 "<span id="keyword"></span>"!</h2>
+
+</div>
+
+<div class="sam-column">
+    <span class="icon is-large pointer sam-add-button" onclick="showSamAddCard()">
+            <i class="fas fa-paint-brush fa-3x"></i>
+    </span>
+    <div class="card layer-popup" id="sam-add-card" style="z-index: 2;">
+        <div class="card-content" style="background-color: rgba(0, 0, 0, 0)">
+            <div class="field">
+                <div class="control">
+                    <span id="keyword-first"></span>
+                    <input id="sam-first" class="input is-primary" type="text" style="border-color: lightslategrey">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <span id="keyword-second"></span>
+                    <input id="sam-second" class="input is-primary" type="text" style="border-color: lightslategrey">
+                </div>
+            </div><div class="field">
+            <div class="control">
+                <span id="keyword-third"></span>
+                <input id="sam-third" class="input is-primary" type="text" style="border-color: lightslategrey">
+            </div>
+        </div>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+            <p class="control">
+                <a class="button is-primary" onclick="createSam()" style="background-color: #F5D89B">
+                    제출
+                </a>
+            </p>
+            <p class="control">
+                <a href="#" class="button is-light" onclick="hideSamAddCard()">
+                    취소
+                </a>
+            </p>
+        </div>
+    </div>
+    <div id="sam-list">
+    </div>
+</div>
+
+<span id="today_word"></span>
+{% endblock %}

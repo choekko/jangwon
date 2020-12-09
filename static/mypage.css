@@ -1,0 +1,5 @@
+#sign {
+            position: relative;
+            background-image: url(../static/sign.jpg);
+            background-size: cover;
+        }

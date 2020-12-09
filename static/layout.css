@@ -1,0 +1,85 @@
+*{
+    font-family: 'Yeon Sung'
+}
+
+.uplayout {
+    width : 98%;
+    height : 50px;
+    border : solid 2px;
+    border-radius : 10px;
+    padding : 0px 5px;
+    margin : 1%;
+}
+.belowlayout {
+    width : 98%;
+    height : 120px;
+    border-top: solid 2px;
+    border-left : solid 2px;
+    border-right: solid 2px;
+    background-color : #2E3D59;
+    border-top-left-radius : 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    padding : 15px 5px;
+    margin : 1%;
+}
+
+.dropdown {
+    position : relative;
+    display : inline-block;
+}
+
+.dropdown-content  {
+    display: none;
+    float : left;
+    background-color: #2E3D59;
+    padding: 3px 8px 0 8px;
+    margin : 0 10px;
+    height : 30px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    transition: 0.4s;
+}
+
+p { color : #43D9BD; }
+h1 { font-size: 30px; font-family: 'Yeon Sung', sursive;}
+
+.dropdown:hover .dropdown-content {
+    display : block;
+}
+
+#PopUp{
+    position : fixed;
+    width : 30em;
+    height : 17em;
+    display : none;
+    top: 30%; left: 50%;
+    margin-left: -15em;
+    margin-top: -5%;
+    padding: 4em;
+}
+
+#flag {
+    width: 110px;
+    height: 56px;
+    box-sizing: content-box;
+    padding-top: 15px;
+    position: relative;
+    background: pink;
+    color: white;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-align: center;
+    text-transform: uppercase;
+}
+#flag:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 13px solid #eee;
+    border-left: 55px solid transparent;
+    border-right: 55px solid transparent;
+}
+

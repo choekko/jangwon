@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block pageload %}
+{% if session['id'] %}
+<script>
+    $(document).ready(function () {
+        showMySams();
+        Beloggedin();
+        $('#jangwon').hide();
+    });
+</script>
+{% else %}
+<script>
+    $(document).ready(function () {
+        window.location.href='/unAuthorized'
+    });
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div style="height:10em; left:50%; top: 120px; z-index: 1; padding: 2em 0em;">
+    </div>
+<div class="main">
+    <div class="title">
+        <div class="container">
+            <h1 class="title has-text-black has-text-centered" style="font-weight: 300; margin-bottom: 1rem">
+                그대의 詩
+            </h1>
+            <p></p>
+            <h3 class="subtitle has-text-centered" style="color : lightslategrey">
+                글이란 도(道)를 밝히는 그릇이니라.
+            </h3>
+            <div id="my-sam-list" class="column">
+            </div>
+        </div>
+    </div>
+</div>
+    <span class="icon is-large pointer sam-add-button" onclick="location.href='/'">
+            <i class="fas fa-paint-brush fa-3x"></i>
+    </span>
+
+{% endblock %}

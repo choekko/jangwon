@@ -1,0 +1,177 @@
+.sam-header{
+    position: fixed;
+    transform: translate(0%, -125%);
+    z-index: 2;
+    width: 80%;
+}
+
+.keyword-card{
+    height: 6rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyword-card .card-content{
+    height: 100%;
+    padding: 0.5rem
+}
+
+.keyword-box{
+    width: 85%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    margin: auto;
+    transform: translate(0%, 18%);
+}
+
+.keyword-box .title{
+    font-size: 3rem;
+}
+
+.rank-box{
+    width: 15%;
+    float: right;
+    font-size: larger;
+}
+
+.sam-add-button{
+    position:fixed; right:2%; bottom : 2%;;
+    z-index: 2;
+}
+
+.sam-column{
+    width: 80%;
+    margin: auto;
+}
+
+#sam-list{
+    margin-top: 130px;
+}
+
+.sam-text{
+    float:left;
+    font-size: x-large;
+    width: 80%;
+}
+
+#sam-add-card .control{
+    font-size: xx-large;
+}
+
+#sam-add-card input{
+    width: 90%;
+}
+
+.sam-add-button{
+    text-align: center;
+}
+
+#today_word{
+    display: none;
+}
+
+.layer-popup{
+    display: none;
+    position: fixed;
+    width: 80%;
+    heigth: 15rem;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, 0%);
+    z-index: 2;
+    margin-bottom: 0rem;
+}
+
+
+/* wrapper */
+.wrapper{
+    font-family: 'Noto Sans KR', sans-serif;
+    justify-content: center;
+}
+
+
+/* header */
+
+header{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background-color: #fff;
+    border: solid 1px;
+}
+
+
+.navbar{
+    /*border: solid 1px;*/
+    height: 4rem;
+    width: 80%;
+    padding: 0.5rem 2rem;
+    margin: 0rem auto;
+}
+
+.navbar-brand{
+    font-family: 'Single Day', cursive;
+    font-size: xx-large;
+    text-align: start;
+}
+
+.navbar-brand .navbar-item{
+    padding-top: 0rem;
+}
+
+.navbar-brand .navbar-item span{
+    vertical-align: top;
+}
+
+.pointer{
+    cursor:pointer;
+}
+
+
+/* main */
+
+main{
+    width: 80%;
+    margin: 0rem auto;
+    padding: 8rem 2rem;
+}
+
+.main-image{
+    margin: 0rem auto;
+    width: 70%;
+}
+
+.content-add{
+    text-align: center;
+    padding-top: 1.5rem;
+}
+
+.content-box{
+    height: 20rem;
+    width: 70em;
+    top: 70%;
+}
+
+#novel-content{
+    height: 12rem;
+}
+
+.message{
+    position: relative;
+}
+
+.content-edit{
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+}
+
+/* footer */
+
+footer{
+    align-items: center;
+}
+
+
+
